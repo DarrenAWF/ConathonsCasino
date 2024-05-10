@@ -1,0 +1,57 @@
+body {
+    background-color: rgb(83, 74, 83);
+}
+
+.title{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(234, 234, 234);
+    margin-top: 20px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.screen {
+    position: relative;
+    border: #202020 10px double;
+    border-radius: 10px;
+    height: calc(55vw * 800/1200);
+    width: calc(55vw * 1200/800);
+    margin: 20px auto;
+}
+
+.map {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+}
+
+.icon {
+    position: absolute;
+    width: 10%;
+    height: auto;
+}
+
+.icon:hover{
+    background-color: rgba(0, 255, 0, 0.2);
+    cursor: pointer;
+}
+
+.rouletteIcon {
+    left: 37%;
+    top: 33%;
+}
+
+.cashierIcon {
+    left: 80%;
+    top: 42%;
+}
+
+.shopIcon {
+    left: 63%;
+    top: 36%;
+}
+
+.higherLowerIcon {
+    left: 11%;
+    top: 44%;
+}
