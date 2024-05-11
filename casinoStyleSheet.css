@@ -1,4 +1,4 @@
-*{
+* {
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -6,13 +6,13 @@ body {
     background-color: rgb(83, 74, 83);
 }
 
-.title{
+.title {
     color: rgb(234, 234, 234);
     margin-top: 20px;
     font-size: 35px;
     text-align: center;
     height: 35px;
-    width: calc(55vw * 1200/800);
+    width: calc(51vw * 1200/800);
     margin: 20px auto;
 }
 
@@ -35,8 +35,8 @@ body {
     position: relative;
     border: #202020 10px double;
     border-radius: 10px;
-    height: calc(55vw * 800/1200);
-    width: calc(55vw * 1200/800);
+    height: calc(51vw * 800/1200);
+    width: calc(51vw * 1200/800);
     margin: 20px auto;
 }
 
@@ -52,7 +52,7 @@ body {
     height: auto;
 }
 
-.icon:hover{
+.icon:hover {
     background-color: rgba(0, 255, 0, 0.2);
     cursor: pointer;
 }
@@ -85,12 +85,12 @@ body {
     left: 1%
 }
 
-.return:hover{
+.return:hover {
     background-color: rgba(0, 255, 0, 0.2);
     cursor: pointer;
 }
 
-.conathon{
+.conathon {
     position: absolute;
     width: 26%;
     height: auto;
@@ -98,12 +98,12 @@ body {
     left: 64%
 }
 
-.conathon:hover{
+.conathon:hover {
     background-color: rgba(0, 255, 0, 0.2);
     cursor: pointer;
 }
 
-.cashierTable{
+.cashierTable {
     position: absolute;
     width: 100%;
     height: auto;
@@ -126,4 +126,15 @@ body {
     z-index: 1;
     font-size: 20px;
     width: 230px;
+}
+
+hr {
+    margin-top: 35px;
+    border: 1px #202020 solid;
+}
+
+footer {
+    margin-top: 10px;
+    color: #202020;
+    text-align: center;
 }
