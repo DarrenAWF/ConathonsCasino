@@ -139,3 +139,100 @@ footer {
     color: #202020;
     text-align: center;
 }
+
+.shopArrow {
+    position: absolute;
+    width: 10%;
+    height: auto;
+    top: 37%;
+}
+
+.shopArrow:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    cursor: pointer;
+}
+
+.shopLeft {
+    left: 3%;
+}
+
+.shopRight {
+    left: 87%;
+}
+
+.itemFrame {
+    position: absolute;
+    width: 25%;
+    height: auto;
+    top: 8%;
+}
+
+.itemOne {
+    left: 13%;
+}
+
+.itemTwo {
+    left: 37.5%;
+}
+
+.itemThree {
+    left: 62%;
+}
+
+.shopButton {
+    position: absolute;
+    width: 19%;
+    height: auto;
+    top: 71%;
+}
+
+.shopButton:hover {
+    cursor: pointer;
+    scale: 105%;
+}
+
+.buttonOne {
+    left: 16%;
+}
+
+.buttonTwo {
+    left: 40.5%;
+}
+
+.buttonThree {
+    left: 65%;
+}
+
+.shopButtonContainer {
+    text-align: center;
+    color: black;
+}
+
+.price {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: 1;
+    top: 79%;
+    left: 50%;
+    color: rgb(255, 255, 255);
+    font-size: 190%;
+    pointer-events: none;
+}
+
+.priceOne {
+    left: 25%;
+}
+
+.priceTwo {
+    left: 50%;
+}
+
+.priceThree {
+    left: 74%;
+}
+
+.coinShop {
+        width: 35px;
+        height: auto;
+        vertical-align: top;
+}

@@ -7,7 +7,7 @@ function talk() {
     var conathon = document.querySelector(".conathon");
     var textBubble = document.querySelector(".textBubble");
     var speech = document.querySelector(".speech");
-    var speechArr = [["Quiting is losing.", "Why the long face?", "Win any yet?"],
+    var speechArr = [["Quiting is losing.", "Why the long face?", "Win any yet?", "Having a good day?"],
     ["Risking it is always better than regretting it.", "Here's a little pocket change my friend.", "It's a slow process quitting won't speed it up.", "Most people quit before they win...",  "I heard the shop has some new goods!", "The roulette table is due for a win!"],
     ["I built this casino to help people like you. I have seen many people win and many give up.", "I doubled my son's college savings at the roulette table and now he can go to college twice!!!"]];
     var randBubble = Math.floor(Math.random() * 3);
@@ -44,7 +44,7 @@ function talk() {
     //Random size of bubble
     switch (randBubble) {
         case 0: textBubble.src = "images/textBubbleSmall.png";
-        randSpeechMax = 3;
+        randSpeechMax = 4;
             break;
         case 1: textBubble.src = "images/textBubbleMedium.png";
         randSpeechMax = 6;
