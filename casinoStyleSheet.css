@@ -236,3 +236,24 @@ footer {
         height: auto;
         vertical-align: top;
 }
+
+.rouletteButton {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rouletteButton:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.rouletteButtonContainer {
+    top: 19.5%;
+    left: 9%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(13, calc(33.3% / 13 - 1px));
+    grid-gap: 3px;
+    height: 40%;
+}
