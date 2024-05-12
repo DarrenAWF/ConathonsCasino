@@ -3,7 +3,6 @@
 }
 
 body {
-    /*background-color: rgb(83, 74, 83);*/
     background-image: url("images/backgroundPattern.png");
 }
 
@@ -125,8 +124,8 @@ body {
     top: 33%;
     left: 22%;
     z-index: 1;
-    font-size: 20px;
-    width: 230px;
+    font-size: 130%;
+    width: 37%;
 }
 
 hr {
@@ -249,11 +248,31 @@ footer {
 }
 
 .rouletteButtonContainer {
-    top: 19.5%;
-    left: 9%;
+    top: 19.2%;
+    left: 9.2%;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(13, calc(33.3% / 13 - 1px));
-    grid-gap: 3px;
+    grid-template-columns: repeat(12, calc(50% / 13));
+    grid-gap: 7% 0.787%;
     height: 40%;
 }
+
+.rouletteButtonContainerZeros {
+    top: 19%;
+    left: 3%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 42%;
+    width: 5.4%;
+}
+
+.zeros {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20%;
+}
+
+/*background-color: #125500;*/

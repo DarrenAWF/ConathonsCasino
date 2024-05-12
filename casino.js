@@ -64,3 +64,7 @@ function talk() {
     prevBubble = randBubble;
     prevSpeech = randSpeech;
 }
+
+function roulette(choice){
+    alert(choice);
+}
