@@ -135,7 +135,7 @@ function roll() {
         win = true;
         profit = wager * 3;
     }
-    else if (choiceRoulette == 41 && randRoll > 12 || randRoll == 0) { //LOSE
+    else if (choiceRoulette == 41 && (randRoll > 12 || randRoll == 0)) { //LOSE
         win = false;
     }
     // User picked 2nd 12
@@ -143,7 +143,7 @@ function roll() {
         win = true;
         profit = wager * 3;
     }
-    else if (choiceRoulette == 42 && randRoll > 24 || randRoll < 13) { //LOSE
+    else if (choiceRoulette == 42 && (randRoll > 24 || randRoll < 13)) { //LOSE
         win = false;
     }
     // User picked 3rd 12
@@ -151,7 +151,7 @@ function roll() {
         win = true;
         profit = wager * 3;
     }
-    else if (choiceRoulette == 43 && randRoll < 25 || randRoll == 37) { //LOSE
+    else if (choiceRoulette == 43 && (randRoll < 25 || randRoll == 37)) { //LOSE
         win = false;
     }
     //User picked 1-18
@@ -159,7 +159,7 @@ function roll() {
         win = true;
         profit = wager * 2;
     }
-    else if (choiceRoulette == 44 && randRoll > 19 || randRoll == 0) { //LOSE
+    else if (choiceRoulette == 44 && (randRoll > 19 || randRoll == 0)) { //LOSE
         win = false;;
     }
     //User picked 19-36
@@ -167,7 +167,7 @@ function roll() {
         win = true;
         profit = wager * 2;
     }
-    else if (choiceRoulette == 49 && randRoll < 19 || randRoll == 37) { //LOSE
+    else if (choiceRoulette == 49 && (randRoll < 19 || randRoll == 37)) { //LOSE
         win = false;
     }
     //User picked EVEN
@@ -175,7 +175,7 @@ function roll() {
         win = true;
         profit = wager * 2;
     }
-    else if (choiceRoulette == 45 && randRoll % 2 != 0 || randRoll == 0) { //LOSE
+    else if (choiceRoulette == 45 && (randRoll % 2 != 0 || randRoll == 0)) { //LOSE
         win = false;
     }
     //User picked ODD
@@ -183,23 +183,23 @@ function roll() {
         win = true;
         profit = wager * 2;
     }
-    else if (choiceRoulette == 48 && randRoll % 2 == 1 || randRoll == 37) { //LOSE
+    else if (choiceRoulette == 48 && (randRoll % 2 == 1 || randRoll == 37)) { //LOSE
         win = false;
     }
     //User picked RED
-    else if (choiceRoulette == 46 && randRoll == 1 || randRoll == 3 || randRoll == 5 || randRoll == 7 || randRoll == 9 || randRoll == 12 || randRoll == 14 || randRoll == 16 || randRoll == 18 || randRoll == 19 || randRoll == 21 || randRoll == 23 || randRoll == 25 || randRoll == 27 || randRoll == 30 || randRoll == 32 || randRoll == 34 || randRoll == 36) { //WIN
+    else if (choiceRoulette == 46 && (randRoll == 1 || randRoll == 3 || randRoll == 5 || randRoll == 7 || randRoll == 9 || randRoll == 12 || randRoll == 14 || randRoll == 16 || randRoll == 18 || randRoll == 19 || randRoll == 21 || randRoll == 23 || randRoll == 25 || randRoll == 27 || randRoll == 30 || randRoll == 32 || randRoll == 34 || randRoll == 36)) { //WIN
         win = true;
         profit = wager * 2;
     }
-    else if (choiceRoulette == 46 && randRoll != 1 && randRoll != 3 && randRoll != 5 && randRoll != 7 && randRoll != 9 && randRoll != 12 && randRoll != 14 && randRoll != 16 && randRoll != 18 && randRoll != 19 && randRoll != 21 && randRoll != 23 && randRoll != 25 && randRoll != 27 && randRoll != 30 && randRoll != 32 && randRoll != 34 && randRoll != 36) { //LOSE
+    else if (choiceRoulette == 46 && (randRoll != 1 && randRoll != 3 && randRoll != 5 && randRoll != 7 && randRoll != 9 && randRoll != 12 && randRoll != 14 && randRoll != 16 && randRoll != 18 && randRoll != 19 && randRoll != 21 && randRoll != 23 && randRoll != 25 && randRoll != 27 && randRoll != 30 && randRoll != 32 && randRoll != 34 && randRoll != 36)) { //LOSE
         win = false;
     }
     //User picked BLACK
-    else if (choiceRoulette == 47 && randRoll == 2 || randRoll == 4 || randRoll == 6 || randRoll == 8 || randRoll == 10 || randRoll == 11 || randRoll == 13 || randRoll == 15 || randRoll == 17 || randRoll == 20 || randRoll == 22 || randRoll == 24 || randRoll == 26 || randRoll == 28 || randRoll == 29 || randRoll == 31 || randRoll == 33 || randRoll == 35) { //WIN
+    else if (choiceRoulette == 47 && (randRoll == 2 || randRoll == 4 || randRoll == 6 || randRoll == 8 || randRoll == 10 || randRoll == 11 || randRoll == 13 || randRoll == 15 || randRoll == 17 || randRoll == 20 || randRoll == 22 || randRoll == 24 || randRoll == 26 || randRoll == 28 || randRoll == 29 || randRoll == 31 || randRoll == 33 || randRoll == 35)) { //WIN
         win = true;
         profit = wager * 2;
     }
-    else if (choiceRoulette == 47 && randRoll != 2 && randRoll != 4 && randRoll != 6 && randRoll != 8 && randRoll != 10 && randRoll != 11 && randRoll != 13 && randRoll != 15 && randRoll != 17 && randRoll != 20 && randRoll != 22 && randRoll != 24 && randRoll != 26 && randRoll != 28 && randRoll != 29 && randRoll != 31 && randRoll != 33 && randRoll != 35) { //LOSE
+    else if (choiceRoulette == 47 && (randRoll != 2 && randRoll != 4 && randRoll != 6 && randRoll != 8 && randRoll != 10 && randRoll != 11 && randRoll != 13 && randRoll != 15 && randRoll != 17 && randRoll != 20 && randRoll != 22 && randRoll != 24 && randRoll != 26 && randRoll != 28 && randRoll != 29 && randRoll != 31 && randRoll != 33 && randRoll != 35)) { //LOSE
         win = false;
     }
     //PROFIT
