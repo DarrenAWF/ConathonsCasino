@@ -65,6 +65,7 @@ function talk() {
     prevBubble = randBubble;
     prevSpeech = randSpeech;
 }
+//====================================================================================
 function roulette(choice) {
     choiceRoulette = choice;
     //variables
@@ -78,16 +79,27 @@ function roulette(choice) {
         }
     }
 }
-
+//====================================================================================
 function roll() {
     //Variables
+    var wager = document.querySelector(".inputRoulette.wager").value;
     var buttons = document.getElementsByClassName("rouletteButton");
-    var randRoll = Math.floor(Math.random() * 37); // Corrected to generate random number between 0 and 36
-    if (choiceRoulette == null) { //NO SELECTION
+    var randRoll = Math.floor(Math.random() * 37); //37
+    var coolDown = true;
+    var win;
+    var profit = 0;
+    //NO SELECTION
+    if (choiceRoulette == null) {
+        alert("Select a square please")
         return;
     }
-    //Alternate between transparent white or gold and purple
+    if (wager == "") {
+        alert("Place a wager please")
+        return
+    }
+    //Alternate colours
     var alternateColour = setInterval(function () {
+        //Alternate White and Gold
         if (randRoll != choiceRoulette) {
             if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(255, 255, 255, 0.2)") {
                 if (choiceRoulette == randRoll) {
@@ -98,7 +110,9 @@ function roll() {
             } else {
                 buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 0.2)";
             }
-        } else {
+        }
+        //Alternate Green and Gold
+        else {
             if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(0, 255, 0, 0.7)") {
                 if (choiceRoulette == randRoll) {
                     buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 215, 0, 1)";
@@ -109,15 +123,131 @@ function roll() {
                 buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(0, 255, 0, 0.7)";
             }
         }
+        //Cooldown
+        coolDown = false;
     }, 150);
+    //Cooldown
+    if (coolDown == true) {
+        document.getElementById("rollButton").onclick = null;
+        //document.getElementById("rollButton").
+    }
+    //------------------RESULTS-----------------------
+    // User picked between 0, 00, 1 and 36
+    if (randRoll == choiceRoulette && choiceRoulette <= 37) { //WIN
+        win = true;
+        profit = wager * 35;
+    }
+    else if (randRoll != choiceRoulette && choiceRoulette <= 37) { //LOSE
+        win = false;
+    }
+    // User picked 2 to 1 top row
+    else if (choiceRoulette == 38 && randRoll % 3 == 0 && randRoll != 0) { //WIN
+        win = true;
+        profit = wager * 3;
+    }
+    else if (choiceRoulette == 38 && randRoll % 3 != 0 || randRoll == 0) { //LOSE
+        win = false;
+    }
+    // User picked 2 to 1 middle row
+    else if (choiceRoulette == 39 && randRoll % 3 == 2) { //WIN
+        win = true;
+        profit = wager * 3;
+    }
+    else if (choiceRoulette == 39 && randRoll % 3 != 2) { //LOSE
+        win = false;
+    }
+    // User picked 2 to 1 bottom row
+    else if (choiceRoulette == 40 && randRoll % 3 == 1) { //WIN
+        win = true;
+        profit = wager * 3;
+    }
+    else if (choiceRoulette == 40 && randRoll % 3 != 1) { //LOSE
+        win = false;
+    }
+    // User picked 1st 12
+    else if (choiceRoulette == 41 && randRoll <= 12 && randRoll >= 1) { //WIN
+        win = true;
+        profit = wager * 3;
+    }
+    else if (choiceRoulette == 41 && randRoll > 12 || randRoll == 0) { //LOSE
+        win = false;
+    }
+    // User picked 2nd 12
+    else if (choiceRoulette == 42 && randRoll <= 24 && randRoll >= 13) { //WIN
+        win = true;
+        profit = wager * 3;
+    }
+    else if (choiceRoulette == 42 && randRoll > 24 || randRoll < 13) { //LOSE
+        win = false;
+    }
+    // User picked 3rd 12
+    else if (choiceRoulette == 43 && randRoll <= 36 && randRoll >= 25) { //WIN
+        win = true;
+        profit = wager * 3;
+    }
+    else if (choiceRoulette == 43 && randRoll < 25 || randRoll == 37) { //LOSE
+        win = false;
+    }
+    //User picked 1-18
+    else if (choiceRoulette == 44 && randRoll <= 18 && randRoll >= 1) { //WIN
+        win = true;
+        profit = wager * 2;
+    }
+    else if (choiceRoulette == 44 && randRoll > 19 || randRoll == 0) { //LOSE
+        win = false;;
+    }
+    //User picked 19-36
+    else if (choiceRoulette == 49 && randRoll >= 19 && randRoll <= 36) { //WIN
+        win = true;
+        profit = wager * 2;
+    }
+    else if (choiceRoulette == 49 && randRoll < 19 || randRoll == 37) { //LOSE
+        win = false;
+    }
+    //User picked EVEN
+    else if (choiceRoulette == 45 && randRoll % 2 == 0 && randRoll != 0) { //WIN
+        win = true;
+        profit = wager * 2;
+    }
+    else if (choiceRoulette == 45 && randRoll % 2 != 0 || randRoll == 0) { //LOSE
+        win = false;
+    }
+    //User picked ODD
+    else if (choiceRoulette == 48 && randRoll % 2 == 1 && randRoll != 37) { //WIN
+        win = true;
+        profit = wager * 2;
+    }
+    else if (choiceRoulette == 48 && randRoll % 2 == 1 || randRoll == 37) { //LOSE
+        win = false;
+    }
+    //User picked RED
+    else if (choiceRoulette == 46 && randRoll == 1 || randRoll == 3 || randRoll == 5 || randRoll == 7 || randRoll == 9 || randRoll == 12 || randRoll == 14 || randRoll == 16 || randRoll == 18 || randRoll == 19 || randRoll == 21 || randRoll == 23 || randRoll == 25 || randRoll == 27 || randRoll == 30 || randRoll == 32 || randRoll == 34 || randRoll == 36) { //WIN
+        win = true;
+        profit = wager * 2;
+    }
+    else if (choiceRoulette == 46 && randRoll != 1 && randRoll != 3 && randRoll != 5 && randRoll != 7 && randRoll != 9 && randRoll != 12 && randRoll != 14 && randRoll != 16 && randRoll != 18 && randRoll != 19 && randRoll != 21 && randRoll != 23 && randRoll != 25 && randRoll != 27 && randRoll != 30 && randRoll != 32 && randRoll != 34 && randRoll != 36) { //LOSE
+        win = false;
+    }
+    //User picked BLACK
+    else if (choiceRoulette == 47 && randRoll == 2 || randRoll == 4 || randRoll == 6 || randRoll == 8 || randRoll == 10 || randRoll == 11 || randRoll == 13 || randRoll == 15 || randRoll == 17 || randRoll == 20 || randRoll == 22 || randRoll == 24 || randRoll == 26 || randRoll == 28 || randRoll == 29 || randRoll == 31 || randRoll == 33 || randRoll == 35) { //WIN
+        win = true;
+        profit = wager * 2;
+    }
+    else if (choiceRoulette == 47 && randRoll != 2 && randRoll != 4 && randRoll != 6 && randRoll != 8 && randRoll != 10 && randRoll != 11 && randRoll != 13 && randRoll != 15 && randRoll != 17 && randRoll != 20 && randRoll != 22 && randRoll != 24 && randRoll != 26 && randRoll != 28 && randRoll != 29 && randRoll != 31 && randRoll != 33 && randRoll != 35) { //LOSE
+        win = false;
+    }
+    //PROFIT
+    if (win == true) {
+        document.querySelector(".inputRoulette.profit").value = "+" + Math.floor(profit);
+        document.querySelector(".inputRoulette.profit").style.color = "rgba(0, 255, 0)";
+    } else if (win == false) {
+        document.querySelector(".inputRoulette.profit").value = "-" + wager;
+        document.querySelector(".inputRoulette.profit").style.color = "red";
+    }
     //Stop flashing colour after 4 seconds
     setTimeout(function () {
         clearInterval(alternateColour);
-        // User picked between 0, 00, 1 and 36
-        if (randRoll == choiceRoulette && choiceRoulette < 37) {
-            //WIN
-        } else {
-            //LOSE
-        }
+        document.getElementById("rollButton").onclick = roll;
+        document.querySelector(".inputRoulette.wager").value = "";
     }, 4000);
 }

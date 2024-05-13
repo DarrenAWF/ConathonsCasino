@@ -290,7 +290,7 @@ footer {
 
 .inputRoulette {
     position: absolute;
-    width: 18%;
+    width: 17.5%;
     height: 18%;
     top: 19%;
     left: 72%;
@@ -301,7 +301,7 @@ footer {
     background-size: 25%;
     background-position: 5% 50%;
     background-repeat: no-repeat;
-    padding-left: 7.5%;
+    padding-left: 8%;
     font-size: 3vw;
 }
 
