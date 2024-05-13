@@ -311,5 +311,60 @@ footer {
 }
 
 .clicked {
-    background-color: rgba(255, 215, 0, 0.5); /* Transparent gold */
+    background-color: rgba(255, 215, 0, 0.5);
+    /* Transparent gold */
+}
+
+.rouletteButtonContainerRows {
+    top: 19%;
+    left: 64.8%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 42%;
+    width: 5.4%;
+}
+
+.rows {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 9%;
+}
+
+.rouletteButtonContainerColumns {
+    top: 62%;
+    left: 9.2%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 9.8%;
+    width: 55.8%;
+}
+
+.columns {
+    height: 100%;
+    width: 100%;
+    margin-right: 2%;
+}
+
+.rouletteButtonContainerOther {
+    top: 72.5%;
+    left: 9.2%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 9.8%;
+    width: 55.8%;
+}
+
+.other {
+    height: 100%;
+    width: 100%;
+    margin-right: 2%;
 }

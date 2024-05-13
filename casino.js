@@ -2,7 +2,7 @@
 var prevBubble;
 var prevSpeech;
 var choiceRoulette
-var rouletteArr = [37, 24, 12, 0, 25, 13, 1, 26, 14, 2, 27, 15, 3, 28, 16, 4, 29, 17, 5, 30, 18, 6, 31, 19, 7, 32, 20, 8, 33, 21, 9, 34, 22, 10, 35, 23, 11, 36];
+var rouletteArr = [37, 24, 12, 0, 25, 13, 1, 26, 14, 2, 27, 15, 3, 28, 16, 4, 29, 17, 5, 30, 18, 6, 31, 19, 7, 32, 20, 8, 33, 21, 9, 34, 22, 10, 35, 23, 11, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49];
 function talk() {
     //Variables
     var conathon = document.querySelector(".conathon");
@@ -70,7 +70,7 @@ function roulette(choice) {
     //variables
     var buttons = document.getElementsByClassName("rouletteButton");
     //change clicked button to gold
-    buttons[rouletteArr[choice]].style.backgroundColor = "rgba(255, 215, 0, 1)";
+    buttons[rouletteArr[choice]].style.backgroundColor = "rgba(0, 255, 0, 0.7)";
     //reset previous clicked buttons
     for (loop = 0; loop < buttons.length; loop++) {
         if (loop != choice) {
@@ -82,28 +82,42 @@ function roulette(choice) {
 function roll() {
     //Variables
     var buttons = document.getElementsByClassName("rouletteButton");
-    var randRoll = Math.floor(Math.random() * 37);
+    var randRoll = Math.floor(Math.random() * 37); // Corrected to generate random number between 0 and 36
     if (choiceRoulette == null) { //NO SELECTION
         return;
     }
-    //Alternate between transparent white and purple
+    //Alternate between transparent white or gold and purple
     var alternateColour = setInterval(function () {
-        if (buttons[rouletteArr[randRoll]].style.backgroundColor === "rgba(255, 255, 255, 0.2)") {
-            buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(215, 0, 255, 1)";
+        if (randRoll != choiceRoulette) {
+            if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(255, 255, 255, 0.2)") {
+                if (choiceRoulette == randRoll) {
+                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 215, 0, 1)";
+                } else {
+                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 1)";
+                }
+            } else {
+                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            }
         } else {
-            buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(0, 255, 0, 0.7)") {
+                if (choiceRoulette == randRoll) {
+                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 215, 0, 1)";
+                } else {
+                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 1)";
+                }
+            } else {
+                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(0, 255, 0, 0.7)";
+            }
         }
     }, 150);
-    //Stop flashing colour after 3 seconds
+    //Stop flashing colour after 4 seconds
     setTimeout(function () {
-        clearInterval(alternateColour); // Corrected variable name
+        clearInterval(alternateColour);
         // User picked between 0, 00, 1 and 36
-        if (randRoll == choiceRoulette && choiceRoulette < 37) { 
+        if (randRoll == choiceRoulette && choiceRoulette < 37) {
             //WIN
         } else {
             //LOSE
         }
-        // else if () //OTHER WIN CONDITIONS or LOSE
-        alert(randRoll + " " + choiceRoulette);
-    }, 3000);
+    }, 4000);
 }
