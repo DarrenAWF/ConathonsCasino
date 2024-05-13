@@ -97,40 +97,6 @@ function roll() {
         alert("Place a wager please")
         return
     }
-    //Alternate colours
-    var alternateColour = setInterval(function () {
-        //Alternate White and Gold
-        if (randRoll != choiceRoulette) {
-            if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(255, 255, 255, 0.2)") {
-                if (choiceRoulette == randRoll) {
-                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 215, 0, 1)";
-                } else {
-                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 1)";
-                }
-            } else {
-                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-            }
-        }
-        //Alternate Green and Gold
-        else {
-            if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(0, 255, 0, 0.7)") {
-                if (choiceRoulette == randRoll) {
-                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 215, 0, 1)";
-                } else {
-                    buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 1)";
-                }
-            } else {
-                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(0, 255, 0, 0.7)";
-            }
-        }
-        //Cooldown
-        coolDown = false;
-    }, 150);
-    //Cooldown
-    if (coolDown == true) {
-        document.getElementById("rollButton").onclick = null;
-        //document.getElementById("rollButton").
-    }
     //------------------RESULTS-----------------------
     // User picked between 0, 00, 1 and 36
     if (randRoll == choiceRoulette && choiceRoulette <= 37) { //WIN
@@ -243,6 +209,33 @@ function roll() {
     } else if (win == false) {
         document.querySelector(".inputRoulette.profit").value = "-" + wager;
         document.querySelector(".inputRoulette.profit").style.color = "red";
+    }
+    //---------------------------------------------------------------------------
+    //Alternate colours
+    var alternateColour = setInterval(function () {
+        //Alternate White and Gold
+        if (win == false) {
+            if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(255, 255, 255, 0.2)") {
+                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 1)";
+            } else {
+                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            }
+        }
+        //Alternate Green and Gold
+        else if (win == true) {
+            if (buttons[rouletteArr[randRoll]].style.backgroundColor == "rgba(0, 255, 0, 0.7)") {
+                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(255, 215, 0, 1)";
+            } else {
+                buttons[rouletteArr[randRoll]].style.backgroundColor = "rgba(0, 255, 0, 0.7)";
+            }
+        }
+        //Cooldown
+        coolDown = false;
+    }, 150);
+    //Cooldown
+    if (coolDown == true) {
+        document.getElementById("rollButton").onclick = null;
+        //document.getElementById("rollButton").
     }
     //Stop flashing colour after 4 seconds
     setTimeout(function () {
