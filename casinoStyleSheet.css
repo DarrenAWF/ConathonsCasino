@@ -124,7 +124,7 @@ body {
     top: 33%;
     left: 22%;
     z-index: 1;
-    font-size: 130%;
+    font-size: calc(2.5vw);
     width: 37%;
 }
 
@@ -214,7 +214,7 @@ footer {
     top: 79%;
     left: 50%;
     color: rgb(255, 255, 255);
-    font-size: 190%;
+    font-size: calc(4.1vw);
     pointer-events: none;
 }
 
@@ -231,9 +231,9 @@ footer {
 }
 
 .coinShop {
-        width: 35px;
-        height: auto;
-        vertical-align: top;
+    width: 4.6vw;
+    height: auto;
+    vertical-align: top;
 }
 
 .rouletteButton {
@@ -275,4 +275,41 @@ footer {
     margin-bottom: 20%;
 }
 
-/*background-color: #125500;*/
+.rollButton {
+    position: absolute;
+    width: 26%;
+    height: auto;
+    top: 42.8%;
+    left: 72%;
+}
+
+.rollButton:hover {
+    cursor: pointer;
+    scale: 105%;
+}
+
+.inputRoulette {
+    position: absolute;
+    width: 18%;
+    height: 18%;
+    top: 19%;
+    left: 72%;
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+    background-image: url("images/coin.png");
+    background-size: 25%;
+    background-position: 5% 50%;
+    background-repeat: no-repeat;
+    padding-left: 7.5%;
+    font-size: 3vw;
+}
+
+.profit {
+    top: 65%;
+    pointer-events: none;
+}
+
+.clicked {
+    background-color: rgba(255, 215, 0, 0.5); /* Transparent gold */
+}
