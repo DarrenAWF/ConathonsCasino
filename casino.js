@@ -249,20 +249,25 @@ function higherLower(bet) {
     //Variables
     var randPlayer = Math.floor(Math.random() * 13);
     var randDealer = Math.floor(Math.random() * 13);
+    var randPlayerSuit = Math.floor(Math.random() * 4);
+    var randDealerSuit = Math.floor(Math.random() * 4);
     var wager = document.getElementById("wagerHiLo").value;
     var profit;
+    var cardDeckArr = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    var cardSuitsArr = ["url('images/heart.png')", "url('images/diamond.png')", "url('images/club.png')", "url('images/spade.png')"];
     //NO ENTRY
     if (wager == "") {
         alert("Place a wager please");
         return
     }
-    var cardDeckArr = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];    //PLAYER
     //PLAYER
+    document.getElementById("yourHand").style.backgroundImage = cardSuitsArr[randPlayerSuit];
     document.querySelector(".playerHand.yourHand").value = cardDeckArr[randPlayer];
     //DEALER
+    document.getElementById("dealerHand").style.backgroundImage = cardSuitsArr[randDealerSuit];
     document.querySelector(".playerHand.dealerHand").value = cardDeckArr[randDealer];
     //RESULT
-    profit = Math.floor(wager*2);
+    profit = Math.floor(wager * 2);
     if ((bet == true && randPlayer > randDealer) || (bet == false && randPlayer < randDealer)) { //WIN
         document.querySelector(".moneyBox.dealerBox").value = "+" + profit;
         document.querySelector(".moneyBox.dealerBox").style.color = "rgba(0, 255, 0)";

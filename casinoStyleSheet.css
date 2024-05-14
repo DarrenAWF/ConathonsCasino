@@ -413,13 +413,16 @@ footer {
     border-radius: 15px;
     border: none;
     background-color: white;
-    background-image: url("images/club.png");
     background-size: 25%;
     background-position: 20% 50%;
     background-repeat: no-repeat;
     padding-left: 8%;
     font-size: 3vw;
     pointer-events: none;
+}
+
+.yourHand {
+    background-image: url("images/club.png");
 }
 
 .dealerHand {
@@ -436,11 +439,11 @@ footer {
     cursor: pointer;
 }
 
-.lower{
+.lower {
     top: 60.5%;
 }
 
-.hiLoArrows:hover{
+.hiLoArrows:hover {
     cursor: pointer;
     background-color: rgba(0, 255, 0, 0.2);
     scale: 103%;
