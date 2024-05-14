@@ -3,6 +3,54 @@ var prevBubble;
 var prevSpeech;
 var choiceRoulette
 var rouletteArr = [37, 24, 12, 0, 25, 13, 1, 26, 14, 2, 27, 15, 3, 28, 16, 4, 29, 17, 5, 30, 18, 6, 31, 19, 7, 32, 20, 8, 33, 21, 9, 34, 22, 10, 35, 23, 11, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49];
+var updated = true;
+//====================================================================================
+//Display account balance on load
+window.onload = function () {
+    displayAccountBalance();
+};
+//-----------CREATE OBJECT FOR ACCOUNT BALANCE-----------
+//Set Cookies
+function setCookie(name, value) {
+    document.cookie = name + "=" + value + ";path=/";
+}
+//Get Cookies
+function getCookie(name) {
+    const cookieArray = document.cookie.split(';');
+    for (let loop = 0; loop < cookieArray.length; loop++) {
+        let c = cookieArray[loop];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name + "=") == 0) {
+            return Number(c.substring(name.length + 1, c.length));
+        }
+    }
+    return null;
+}
+//Get account balance
+function getAccountBalance() {
+    let accountBalance = getCookie("accountBalance");
+    //Set initial account balance
+    if (updated == true && accountBalance == null) {
+        accountBalance = 999999;
+        setCookie("accountBalance", accountBalance);
+    }
+    return Math.floor(accountBalance);
+}
+//-----------CREATE OBJECT FOR ACCOUNT BALANCE-----------
+//Update and display the balance as ID = accountBalacne
+function updateAccountBalance(amount) {
+    const currentBalance = getAccountBalance();
+    const newBalance = currentBalance + amount;
+    setCookie("accountBalance", newBalance);
+    updated=false;
+    displayAccountBalance();
+}
+function displayAccountBalance() {
+    document.getElementById("accountBalance").textContent = Math.floor(getAccountBalance()).toLocaleString('en-CA');
+}
+//====================================================================================
 function talk() {
     //Variables
     var conathon = document.querySelector(".conathon");
@@ -93,8 +141,8 @@ function roll() {
         alert("Select a square please");
         return;
     }
-    if (wager == "") {
-        alert("Place a wager please");
+    if (wager == "" || wager <= 0 || wager > getAccountBalance()) {
+        alert("Place a valid wager please");
         return
     }
     //------------------RESULTS-----------------------
@@ -206,10 +254,13 @@ function roll() {
     if (win == true) {
         document.querySelector(".inputRoulette.profit").value = "+" + Math.floor(profit);
         document.querySelector(".inputRoulette.profit").style.color = "rgba(0, 255, 0)";
+        updateAccountBalance(profit - wager); //Add profit to account balance
     } else if (win == false) {
         document.querySelector(".inputRoulette.profit").value = "-" + wager;
         document.querySelector(".inputRoulette.profit").style.color = "red";
+        updateAccountBalance(-wager); //Take away wager from account balance
     }
+    displayAccountBalance(); // Display new account balance
     //---------------------------------------------------------------------------
     //Alternate colours
     var alternateColour = setInterval(function () {
@@ -244,8 +295,9 @@ function roll() {
         document.querySelector(".inputRoulette.wager").value = "";
     }, 4000);
 }
-
+//====================================================================================
 function higherLower(bet) {
+    document.getElementById("accountBalance").textContent;
     //Variables
     var randPlayer = Math.floor(Math.random() * 13);
     var randDealer = Math.floor(Math.random() * 13);
@@ -256,8 +308,8 @@ function higherLower(bet) {
     var cardDeckArr = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     var cardSuitsArr = ["url('images/heart.png')", "url('images/diamond.png')", "url('images/club.png')", "url('images/spade.png')"];
     //NO ENTRY
-    if (wager == "") {
-        alert("Place a wager please");
+    if (wager == "" || wager <= 0 || wager > getAccountBalance()) {
+        alert("Place a valid wager please");
         return
     }
     //PLAYER
@@ -271,10 +323,12 @@ function higherLower(bet) {
     if ((bet == true && randPlayer > randDealer) || (bet == false && randPlayer < randDealer)) { //WIN
         document.querySelector(".moneyBox.dealerBox").value = "+" + profit;
         document.querySelector(".moneyBox.dealerBox").style.color = "rgba(0, 255, 0)";
+        updateAccountBalance(profit - wager); //Add profit to account balance
     }
     else { //LOSE
         document.querySelector(".moneyBox.dealerBox").value = "-" + Math.floor(wager);
         document.querySelector(".moneyBox.dealerBox").style.color = "red";
+        updateAccountBalance(-wager); //Take away wager from account balance
     }
     document.getElementById("wagerHiLo").value = "";
 }
