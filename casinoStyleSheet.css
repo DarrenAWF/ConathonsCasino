@@ -368,3 +368,80 @@ footer {
     width: 100%;
     margin-right: 2%;
 }
+
+.moneyBox {
+    position: absolute;
+    width: 17.5%;
+    height: 18%;
+    top: 40.5%;
+    left: 40%;
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+    background-image: url("images/coin.png");
+    background-size: 25%;
+    background-position: 5% 50%;
+    background-repeat: no-repeat;
+    padding-left: 8%;
+    font-size: 3vw;
+}
+
+.dealerBox {
+    left: 68%;
+    pointer-events: none;
+}
+
+.playerText {
+    top: 6%;
+    left: 10%;
+    position: absolute;
+    font-size: 4vw;
+    color: white;
+    z-index: 1;
+}
+
+.dealerText {
+    top: 46%;
+}
+
+.playerHand {
+    position: absolute;
+    width: 8%;
+    height: 18%;
+    top: 21%;
+    left: 10%;
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+    background-image: url("images/club.png");
+    background-size: 25%;
+    background-position: 20% 50%;
+    background-repeat: no-repeat;
+    padding-left: 8%;
+    font-size: 3vw;
+    pointer-events: none;
+}
+
+.dealerHand {
+    top: 62%;
+    background-image: url("images/heart.png");
+}
+
+.hiLoArrows {
+    width: 15%;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    left: 59.5%;
+    cursor: pointer;
+}
+
+.lower{
+    top: 60.5%;
+}
+
+.hiLoArrows:hover{
+    cursor: pointer;
+    background-color: rgba(0, 255, 0, 0.2);
+    scale: 103%;
+}

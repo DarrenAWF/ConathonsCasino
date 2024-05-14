@@ -90,11 +90,11 @@ function roll() {
     var profit = 0;
     //NO SELECTION
     if (choiceRoulette == null) {
-        alert("Select a square please")
+        alert("Select a square please");
         return;
     }
     if (wager == "") {
-        alert("Place a wager please")
+        alert("Place a wager please");
         return
     }
     //------------------RESULTS-----------------------
@@ -243,4 +243,33 @@ function roll() {
         document.getElementById("rollButton").onclick = roll;
         document.querySelector(".inputRoulette.wager").value = "";
     }, 4000);
+}
+
+function higherLower(bet) {
+    //Variables
+    var randPlayer = Math.floor(Math.random() * 13);
+    var randDealer = Math.floor(Math.random() * 13);
+    var wager = document.getElementById("wagerHiLo").value;
+    var profit;
+    //NO ENTRY
+    if (wager == "") {
+        alert("Place a wager please");
+        return
+    }
+    var cardDeckArr = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];    //PLAYER
+    //PLAYER
+    document.querySelector(".playerHand.yourHand").value = cardDeckArr[randPlayer];
+    //DEALER
+    document.querySelector(".playerHand.dealerHand").value = cardDeckArr[randDealer];
+    //RESULT
+    profit = Math.floor(wager*2);
+    if ((bet == true && randPlayer > randDealer) || (bet == false && randPlayer < randDealer)) { //WIN
+        document.querySelector(".moneyBox.dealerBox").value = "+" + profit;
+        document.querySelector(".moneyBox.dealerBox").style.color = "rgba(0, 255, 0)";
+    }
+    else { //LOSE
+        document.querySelector(".moneyBox.dealerBox").value = "-" + Math.floor(wager);
+        document.querySelector(".moneyBox.dealerBox").style.color = "red";
+    }
+    document.getElementById("wagerHiLo").value = "";
 }
