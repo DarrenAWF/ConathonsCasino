@@ -3,7 +3,6 @@ var prevBubble;
 var prevSpeech;
 var choiceRoulette
 var rouletteArr = [37, 24, 12, 0, 25, 13, 1, 26, 14, 2, 27, 15, 3, 28, 16, 4, 29, 17, 5, 30, 18, 6, 31, 19, 7, 32, 20, 8, 33, 21, 9, 34, 22, 10, 35, 23, 11, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49];
-var updated = true;
 //====================================================================================
 //Display account balance on load
 window.onload = function () {
@@ -26,13 +25,12 @@ function getCookie(name) {
             return Number(c.substring(name.length + 1, c.length));
         }
     }
-    return null;
 }
 //Get account balance
 function getAccountBalance() {
     let accountBalance = getCookie("accountBalance");
     //Set initial account balance
-    if (updated == true && accountBalance == null) {
+    if (accountBalance == null) {
         accountBalance = 999999;
         setCookie("accountBalance", accountBalance);
     }
@@ -44,7 +42,6 @@ function updateAccountBalance(amount) {
     const currentBalance = getAccountBalance();
     const newBalance = currentBalance + amount;
     setCookie("accountBalance", newBalance);
-    updated=false;
     displayAccountBalance();
 }
 function displayAccountBalance() {
