@@ -2,50 +2,46 @@
 var prevBubble;
 var prevSpeech;
 var choiceRoulette
+var accountBalance = 9999;
+var shopArr = [true, true, true];
+var itemPrice = [8999, 5599, 2250];
 var rouletteArr = [37, 24, 12, 0, 25, 13, 1, 26, 14, 2, 27, 15, 3, 28, 16, 4, 29, 17, 5, 30, 18, 6, 31, 19, 7, 32, 20, 8, 33, 21, 9, 34, 22, 10, 35, 23, 11, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49];
 //====================================================================================
 //Display account balance on load
 window.onload = function () {
+    if (localStorage.getItem("accountBalance") !== null) {
+        accountBalance = Math.floor(localStorage.getItem("accountBalance"));
+    }
+    if (window.location.pathname.endsWith('shop.html')) {
+        if (localStorage.getItem("itemOne") == "false") {
+            document.getElementById("itemOne").src = "images/sold.png";
+            document.getElementById("itemOnePrice").textContent = "SOLD";
+            document.getElementById("itemOnePrice").style.left = "25.6%";
+            shopArr[0] = false;
+        }
+        if (localStorage.getItem("itemTwo") == "false") {
+            document.getElementById("itemTwo").src = "images/sold.png";
+            document.getElementById("itemTwoPrice").textContent = "SOLD";
+            document.getElementById("itemTwoPrice").style.left = "50%";
+            shopArr[1] = false;
+        }
+        if (localStorage.getItem("itemThree") == "false") {
+            document.getElementById("itemThree").src = "images/sold.png";
+            document.getElementById("itemThreePrice").textContent = "SOLD";
+            document.getElementById("itemThreePrice").style.left = "74.7%";
+            shopArr[2] = false;
+        }
+    }
     displayAccountBalance();
 };
-//-----------CREATE OBJECT FOR ACCOUNT BALANCE-----------
-//Set Cookies
-function setCookie(name, value) {
-    document.cookie = name + "=" + value + ";path=/";
-}
-//Get Cookies
-function getCookie(name) {
-    const cookieArray = document.cookie.split(';');
-    for (let loop = 0; loop < cookieArray.length; loop++) {
-        let c = cookieArray[loop];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name + "=") == 0) {
-            return Number(c.substring(name.length + 1, c.length));
-        }
-    }
-}
-//Get account balance
-function getAccountBalance() {
-    let accountBalance = getCookie("accountBalance");
-    //Set initial account balance
-    if (accountBalance == null) {
-        accountBalance = 999999;
-        setCookie("accountBalance", accountBalance);
-    }
-    return Math.floor(accountBalance);
-}
-//-----------CREATE OBJECT FOR ACCOUNT BALANCE-----------
-//Update and display the balance as ID = accountBalacne
-function updateAccountBalance(amount) {
-    const currentBalance = getAccountBalance();
-    const newBalance = currentBalance + amount;
-    setCookie("accountBalance", newBalance);
+//====================================================================================
+function updateAccountBalance(profit) {
+    accountBalance += profit;
+    localStorage.setItem("accountBalance", accountBalance);
     displayAccountBalance();
 }
 function displayAccountBalance() {
-    document.getElementById("accountBalance").textContent = Math.floor(getAccountBalance()).toLocaleString('en-CA');
+    document.getElementById("accountBalance").textContent = Math.floor(accountBalance).toLocaleString('en-CA');
 }
 //====================================================================================
 function talk() {
@@ -62,6 +58,11 @@ function talk() {
     var coolDown = true;
     //Alternate talking and not talking
     var alternateMouth = setInterval(function () {
+        //Change colour if Conathon gives you cash
+        if ((randBubble == 1 && randSpeech == 1) || (randBubble == 2 && randSpeech == 2)) {
+            document.getElementById("accountBalance").style.color = "rgb(120, 255, 90)";
+        }
+        //Set talking animation
         conathon.src = conathon.src.includes("conathon.png") ? "images/conathonTalking.png" : "images/conathon.png";
     }, 100);
     //Stop talking after 1,2,3 seconds and reset cooldown
@@ -78,6 +79,9 @@ function talk() {
             this.style.cursor = "default";
         });
         document.getElementById("talkID").onclick = talk;
+        if ((randBubble == 1 && randSpeech == 1) || (randBubble == 1 && randSpeech == 1)) {
+
+        }
     }, 1000 * (randBubble + 1));
     //Cooldown
     if (coolDown == true) {
@@ -106,6 +110,14 @@ function talk() {
     }
     //Set random text content
     speech.textContent = speechArr[randBubble][randSpeech];
+    //Conathon gives you cash
+    if (randBubble == 1 && randSpeech == 1) {
+        updateAccountBalance(Math.floor(Math.random() * 900 + 100));
+    }
+    if (randBubble == 2 && randSpeech == 2) {
+        updateAccountBalance(Math.floor(Math.random() * 9000 + 1000));
+    }
+    document.getElementById("accountBalance").style.color = "white";
     //Set previous variable of speech bubble
     prevBubble = randBubble;
     prevSpeech = randSpeech;
@@ -138,7 +150,7 @@ function roll() {
         alert("Select a square please");
         return;
     }
-    if (wager == "" || wager <= 0 || wager > getAccountBalance()) {
+    if (wager == "" || wager <= 0 || wager > accountBalance) {
         alert("Place a valid wager please");
         return
     }
@@ -257,7 +269,6 @@ function roll() {
         document.querySelector(".inputRoulette.profit").style.color = "red";
         updateAccountBalance(-wager); //Take away wager from account balance
     }
-    displayAccountBalance(); // Display new account balance
     //---------------------------------------------------------------------------
     //Alternate colours
     var alternateColour = setInterval(function () {
@@ -305,7 +316,7 @@ function higherLower(bet) {
     var cardDeckArr = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     var cardSuitsArr = ["url('images/heart.png')", "url('images/diamond.png')", "url('images/club.png')", "url('images/spade.png')"];
     //NO ENTRY
-    if (wager == "" || wager <= 0 || wager > getAccountBalance()) {
+    if (wager == "" || wager <= 0 || wager > accountBalance) {
         alert("Place a valid wager please");
         return
     }
@@ -328,4 +339,56 @@ function higherLower(bet) {
         updateAccountBalance(-wager); //Take away wager from account balance
     }
     document.getElementById("wagerHiLo").value = "";
+}
+//====================================================================================
+function shopBuy(itemNum) {
+    //Not enough Money
+    if (accountBalance < itemPrice[itemNum]) {
+        alert("\"Go make some more money, then think about coming back to my shop.\" -Conathon");
+        return;
+    }
+    //Is item sold or not
+    if (shopArr[itemNum] == true) {
+        alert('"Thanks for your purchase!" -Conathon')
+        shopArr[itemNum] = false;
+    } else {
+        alert("This item is out of stock :(");
+        return;
+    }
+    //Case for each item
+    switch (itemNum) {
+        case 0:
+            document.getElementById("itemOne").src = "images/sold.png";
+            document.getElementById("itemOnePrice").textContent = "SOLD";
+            document.getElementById("itemOnePrice").style.left = "25.6%";
+            localStorage.setItem("itemOne", "false");
+            updateAccountBalance(-itemPrice[itemNum]); // Subtract the correct item price
+            break;
+        case 1:
+            document.getElementById("itemTwo").src = "images/sold.png";
+            document.getElementById("itemTwoPrice").textContent = "SOLD";
+            document.getElementById("itemTwoPrice").style.left = "50%";
+            localStorage.setItem("itemTwo", "false");
+            updateAccountBalance(-itemPrice[itemNum]); // Subtract the correct item price
+            break;
+        case 2:
+            document.getElementById("itemThree").src = "images/sold.png";
+            document.getElementById("itemThreePrice").textContent = "SOLD";
+            document.getElementById("itemThreePrice").style.left = "74.7%";
+            localStorage.setItem("itemThree", "false");
+            updateAccountBalance(-itemPrice[itemNum]); // Subtract the correct item price
+            break;
+    }
+}
+//====================================================================================
+function reset() {
+    //Reset account balance and reset shop
+    alert("\"Thank me later when you're rich\" - Conathon");
+    alert("Your game has been reset!")
+    localStorage.setItem("accountBalance", 9999);
+    localStorage.setItem("itemOne", "true");
+    localStorage.setItem("itemTwo", "true");
+    localStorage.setItem("itemThree", "true");
+    accountBalance = 9999;
+    displayAccountBalance();
 }

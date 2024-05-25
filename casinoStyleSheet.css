@@ -228,7 +228,7 @@ footer {
 }
 
 .priceTwo {
-    left: 50%;
+    left: 49.5%;
 }
 
 .priceThree {
@@ -469,4 +469,32 @@ footer {
     overflow-y: scroll;
     border-left: 4px solid #202020;
     border-right: 4px solid #202020;
+}
+
+.resetButton {
+    position: absolute;
+    width: 9%;
+    height: auto;
+    top: 90%;
+    left: 1%;
+}
+
+.resetButton:Hover{
+    cursor: pointer;
+    scale: 105%;
+}
+
+.reset{
+    position: absolute;
+    color: white;
+    font-size: 75%;
+    top: 91.2%;
+    left: 2%;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.resetButtonContainer{
+    text-align: left;
+    color: black;
 }
