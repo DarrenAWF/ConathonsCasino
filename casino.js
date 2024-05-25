@@ -6,6 +6,13 @@ var accountBalance = 9999;
 var shopArr = [true, true, true];
 var itemPrice = [8999, 5599, 2250];
 var rouletteArr = [37, 24, 12, 0, 25, 13, 1, 26, 14, 2, 27, 15, 3, 28, 16, 4, 29, 17, 5, 30, 18, 6, 31, 19, 7, 32, 20, 8, 33, 21, 9, 34, 22, 10, 35, 23, 11, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49];
+var soundsArr = {
+    oldMan: new Audio("sounds/oldMan.wav"),
+    jackpot: new Audio("sounds/jackpot.wav"),
+    cards: new Audio("sounds/cards.wav"),
+    wompWomp: new Audio("sounds/wompWomp.wav"),
+    kaChing: new Audio("sounds/kaChing.wav")
+}
 //====================================================================================
 //Display account balance on load
 window.onload = function () {
@@ -44,7 +51,14 @@ function displayAccountBalance() {
     document.getElementById("accountBalance").textContent = Math.floor(accountBalance).toLocaleString('en-CA');
 }
 //====================================================================================
+function playSound(soundFile) {
+    soundsArr[soundFile].currentTime = 0;
+    soundsArr[soundFile].play();
+}
+//====================================================================================
 function talk() {
+    //Play Sound
+    playSound("oldMan");
     //Variables
     var conathon = document.querySelector(".conathon");
     var textBubble = document.querySelector(".textBubble");
@@ -82,7 +96,7 @@ function talk() {
         if ((randBubble == 1 && randSpeech == 1) || (randBubble == 1 && randSpeech == 1)) {
 
         }
-    }, 1000 * (randBubble + 1));
+    }, 1000 * (2));
     //Cooldown
     if (coolDown == true) {
         conathon.addEventListener("mouseover", function () {
@@ -261,10 +275,12 @@ function roll() {
     }
     //PROFIT
     if (win == true) {
+        playSound("jackpot");
         document.querySelector(".inputRoulette.profit").value = "+" + Math.floor(profit);
         document.querySelector(".inputRoulette.profit").style.color = "rgba(0, 255, 0)";
         updateAccountBalance(profit - wager); //Add profit to account balance
     } else if (win == false) {
+        playSound("wompWomp");
         document.querySelector(".inputRoulette.profit").value = "-" + wager;
         document.querySelector(".inputRoulette.profit").style.color = "red";
         updateAccountBalance(-wager); //Take away wager from account balance
@@ -320,6 +336,8 @@ function higherLower(bet) {
         alert("Place a valid wager please");
         return
     }
+    //Play sound of cards
+    playSound("cards");
     //PLAYER
     document.getElementById("yourHand").style.backgroundImage = cardSuitsArr[randPlayerSuit];
     document.querySelector(".playerHand.yourHand").value = cardDeckArr[randPlayer];
@@ -349,6 +367,7 @@ function shopBuy(itemNum) {
     }
     //Is item sold or not
     if (shopArr[itemNum] == true) {
+        playSound("kaChing");
         alert('"Thanks for your purchase!" -Conathon')
         shopArr[itemNum] = false;
     } else {
