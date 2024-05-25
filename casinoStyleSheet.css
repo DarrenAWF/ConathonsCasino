@@ -487,8 +487,8 @@ footer {
 .reset{
     position: absolute;
     color: white;
-    font-size: 75%;
-    top: 91.2%;
+    font-size: 1.55vw;
+    top: 91.4%;
     left: 2%;
     font-weight: bold;
     pointer-events: none;
@@ -497,4 +497,8 @@ footer {
 .resetButtonContainer{
     text-align: left;
     color: black;
+}
+
+.sitemap {
+    width: 100%;
 }
